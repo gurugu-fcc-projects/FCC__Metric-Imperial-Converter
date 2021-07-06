@@ -1,8 +1,8 @@
 function ConvertHandler() {
   this.getNum = function (input) {
     // let result = input.match(/^\d+\.?\d+//?\d+/);
-    let result = input.match(/^\d+\.?\d*(\/\d+)?/);
-    console.log(result);
+    let result = input.match(/^\d+\.?\d*(\/\d+\.?\d*)?/);
+
     return result[0];
   };
 
