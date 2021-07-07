@@ -140,4 +140,25 @@ suite("Unit Tests", function () {
       );
     });
   });
+  suite("convertHandler getUnit method", function () {
+    test("should correctly read each valid input unit", function () {
+      const result1 = convertHandler.getUnit("mi");
+      const result2 = convertHandler.getUnit("12km");
+      const result3 = convertHandler.getUnit("1/2gal");
+      const result4 = convertHandler.getUnit("2.2l");
+      const result5 = convertHandler.getUnit(".2lbs");
+      const result6 = convertHandler.getUnit("2.KG");
+      const result7 = convertHandler.getUnit("&^()#&*(&*)(_+=MI");
+      const result8 = convertHandler.getUnit("KM");
+
+      assert.equal(result1, "mi", 'Given input "mi" should return "mi"');
+      assert.equal(result2, "km", 'Given input "12km" should return "km"');
+      assert.equal(result3, "gal", 'Given input "1/2gal" should return "gal"');
+      assert.equal(result4, "l", 'Given input "2.2l" should return "l"');
+      assert.equal(result5, "lbs", 'Given input ".2lbs" should return "lbs"');
+      assert.equal(result6, "kg", 'Given input "2.KG" should return "kg"');
+      assert.equal(result7, "mi", 'Given input "MI" should return "mi"');
+      assert.equal(result8, "km", 'Given input "KM" should return "km"');
+    });
+  });
 });
