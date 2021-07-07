@@ -160,5 +160,57 @@ suite("Unit Tests", function () {
       assert.equal(result7, "mi", 'Given input "MI" should return "mi"');
       assert.equal(result8, "km", 'Given input "KM" should return "km"');
     });
+
+    test("should correctly return an error for an invalid input unit", function () {
+      const result1 = convertHandler.getUnit("mil");
+      const result2 = convertHandler.getUnit("12kms");
+      const result3 = convertHandler.getUnit("1/2gallons");
+      const result4 = convertHandler.getUnit("2.2ligh");
+      const result5 = convertHandler.getUnit(".2lbs732");
+      const result6 = convertHandler.getUnit("2.KG-==");
+      const result7 = convertHandler.getUnit("&^()#&*(&*)(_+=MILE");
+      const result8 = convertHandler.getUnit("KMs");
+
+      assert.equal(
+        result1,
+        "invalid unit",
+        'Given input "mil" should return "invalid unit"'
+      );
+      assert.equal(
+        result2,
+        "invalid unit",
+        'Given input "12kms" should return "invalid unit"'
+      );
+      assert.equal(
+        result3,
+        "invalid unit",
+        'Given input "1/2gallons" should return "invalid unit"'
+      );
+      assert.equal(
+        result4,
+        "invalid unit",
+        'Given input "2.2ligh" should return "invalid unit'
+      );
+      assert.equal(
+        result5,
+        "invalid unit",
+        'Given input ".2lbs732" should return "invalid unit"'
+      );
+      assert.equal(
+        result6,
+        "invalid unit",
+        'Given input "2.KG-==" should return "invalid unit"'
+      );
+      assert.equal(
+        result7,
+        "invalid unit",
+        'Given input "&^()#&*(&*)(_+=MILE" should return "invalid unit"'
+      );
+      assert.equal(
+        result8,
+        "invalid unit",
+        'Given input "KMs" should return "invalid unit"'
+      );
+    });
   });
 });
