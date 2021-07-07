@@ -33,11 +33,24 @@ suite("Unit Tests", function () {
   });
 
   test("convertHandler should correctly read a fractional input with a decimal", function () {
-    const result = convertHandler.getNum("1.2/2.1mi");
+    const result1 = convertHandler.getNum("1.2/2.1mi");
+    const result2 = convertHandler.getNum("1.2/1mi");
+    const result3 = convertHandler.getNum("1.2/mi");
+
     assert.equal(
-      result,
+      result1,
       "1.2/2.1",
       'Given input of "1.2/2.1mi" should return a fractional input with a decimal "1.2/2.1"'
+    );
+    assert.equal(
+      result2,
+      "1.2/1",
+      'Given input of "1.2/1mi" should return a fractional input with a decimal "1.2/1"'
+    );
+    assert.equal(
+      result3,
+      "1.2",
+      'Given input of "1.2/mi" should return a fractional input with a decimal "1.2"'
     );
   });
 });
