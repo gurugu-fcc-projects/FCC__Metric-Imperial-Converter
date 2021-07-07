@@ -15,7 +15,13 @@ function ConvertHandler() {
       }
     }
 
-    return input.slice(0, splitPoint);
+    const numericalPart = input.slice(0, splitPoint);
+
+    if (!numericalPart) {
+      return 1;
+    }
+
+    return numericalPart;
   };
 
   this.getUnit = function (input) {
