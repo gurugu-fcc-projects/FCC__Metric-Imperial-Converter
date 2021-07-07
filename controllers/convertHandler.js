@@ -38,9 +38,22 @@ function ConvertHandler() {
   };
 
   this.getUnit = function (input) {
-    let result;
+    let splitPoint = null;
+    const splitPointRegex = new RegExp("[a-z]");
+    const inputToLowerCase = input.toLowerCase();
 
-    return result;
+    for (let i = 0; i < input.length; i++) {
+      const isFound = splitPointRegex.test(inputToLowerCase.charAt(i));
+
+      if (isFound) {
+        splitPoint = i;
+        break;
+      }
+    }
+
+    const unitPart = inputToLowerCase.slice(splitPoint);
+
+    return unitPart;
   };
 
   this.getReturnUnit = function (initUnit) {
