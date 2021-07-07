@@ -213,4 +213,21 @@ suite("Unit Tests", function () {
       );
     });
   });
+  suite("convertHandler getReturnUnit method", function () {
+    test("should return the correct return unit for each valid input unit", function () {
+      const result1 = convertHandler.getReturnUnit("mi");
+      const result2 = convertHandler.getReturnUnit("km");
+      const result3 = convertHandler.getReturnUnit("gal");
+      const result4 = convertHandler.getReturnUnit("l");
+      const result5 = convertHandler.getReturnUnit("lbs");
+      const result6 = convertHandler.getReturnUnit("kg");
+
+      assert.equal(result1, "km", 'Given input "mi" should return "km"');
+      assert.equal(result2, "mi", 'Given input "km" should return "mi"');
+      assert.equal(result3, "l", 'Given input "gal" should return "l"');
+      assert.equal(result4, "gal", 'Given input "l" should return "gal"');
+      assert.equal(result5, "kg", 'Given input "lbs" should return "kg"');
+      assert.equal(result6, "lbs", 'Given input "kg" should return "lbs"');
+    });
+  });
 });
