@@ -6,7 +6,7 @@ let convertHandler = new ConvertHandler();
 
 suite("Unit Tests", function () {
   suite("convertHandler getNum method", function () {
-    test("convertHandler should correctly read a whole number input", function () {
+    test("should correctly read a whole number input", function () {
       const result = convertHandler.getNum("12mi");
       assert.equal(
         result,
@@ -15,7 +15,7 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("convertHandler should correctly read a decimal number input", function () {
+    test("should correctly read a decimal number input", function () {
       const result = convertHandler.getNum("12.2mi");
       assert.equal(
         result,
@@ -24,7 +24,7 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("convertHandler should correctly read a fractional input", function () {
+    test("should correctly read a fractional input", function () {
       const result1 = convertHandler.getNum("1/2mi");
       const result2 = convertHandler.getNum("4/2mi");
       const result3 = convertHandler.getNum("5/2mi");
@@ -46,7 +46,7 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("convertHandler should correctly read a fractional input with a decimal", function () {
+    test("should correctly read a fractional input with a decimal", function () {
       const result1 = convertHandler.getNum("1.2/2.1mi");
       const result2 = convertHandler.getNum("1.2/1mi");
 
@@ -62,7 +62,7 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("convertHandler should correctly default to a numerical input of 1 when no numerical input is provided", function () {
+    test("should correctly default to a numerical input of 1 when no numerical input is provided", function () {
       const result1 = convertHandler.getNum("mi");
 
       assert.equal(
@@ -72,7 +72,7 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).", function () {
+    test("should correctly return an error on a double-fraction (i.e. 3/2/3).", function () {
       const result1 = convertHandler.getNum("3/2/3mi");
       const result2 = convertHandler.getNum("/2/mi");
 
@@ -88,7 +88,7 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("convertHandler should correctly return an error on incorrect numbers", function () {
+    test("should correctly return an error on incorrect numbers", function () {
       const result1 = convertHandler.getNum("/2mi");
       const result2 = convertHandler.getNum("2/mi");
       const result3 = convertHandler.getNum("/mi");
