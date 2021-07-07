@@ -24,11 +24,24 @@ suite("Unit Tests", function () {
   });
 
   test("convertHandler should correctly read a fractional input", function () {
-    const result = convertHandler.getNum("1/2mi");
+    const result1 = convertHandler.getNum("1/2mi");
+    const result2 = convertHandler.getNum("4/2mi");
+    const result3 = convertHandler.getNum("5/2mi");
+
     assert.equal(
-      result,
-      "1/2",
-      'Given input of "1/2mi" should return a fractional number "1/2"'
+      result1,
+      0.5,
+      'Given input of "1/2mi" should return a number: "0.5"'
+    );
+    assert.equal(
+      result2,
+      2,
+      'Given input of "4/2mi" should return a number: "2"'
+    );
+    assert.equal(
+      result3,
+      2.5,
+      'Given input of "5/2mi" should return a number: "2.5"'
     );
   });
 
@@ -38,13 +51,13 @@ suite("Unit Tests", function () {
 
     assert.equal(
       result1,
-      "1.2/2.1",
-      'Given input of "1.2/2.1mi" should return a fractional input with a decimal "1.2/2.1"'
+      0.5714285714285714,
+      'Given input of "1.2/2.1mi" should return a decimal: "0.5714285714285714"'
     );
     assert.equal(
       result2,
-      "1.2/1",
-      'Given input of "1.2/1mi" should return a fractional input with a decimal "1.2/1"'
+      1.2,
+      'Given input of "1.2/1mi" should return a decimal: "1.2"'
     );
   });
 
