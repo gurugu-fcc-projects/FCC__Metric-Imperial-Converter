@@ -57,4 +57,14 @@ suite("Unit Tests", function () {
       'Given input of "mi" should return a default: "1"'
     );
   });
+
+  test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).", function () {
+    const result1 = convertHandler.getNum("3/2/3mi");
+
+    assert.equal(
+      result1,
+      "invalid number",
+      'Given input of "3/2/3mi" should return an error: "invalid number"'
+    );
+  });
 });
