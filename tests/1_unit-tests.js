@@ -73,4 +73,56 @@ suite("Unit Tests", function () {
       'Given input of "/2/mi" should return an error: "invalid number"'
     );
   });
+
+  test("convertHandler should correctly return an error on incorrect numbers", function () {
+    const result1 = convertHandler.getNum("/2mi");
+    const result2 = convertHandler.getNum("2/mi");
+    const result3 = convertHandler.getNum("/mi");
+    const result4 = convertHandler.getNum(",/,mi");
+    const result5 = convertHandler.getNum("1,1/2,2mi");
+    const result6 = convertHandler.getNum("-/-mi");
+    const result7 = convertHandler.getNum("+/+mi");
+    const result8 = convertHandler.getNum("=/=mi");
+
+    assert.equal(
+      result1,
+      "invalid number",
+      'Given input of "/2mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result2,
+      "invalid number",
+      'Given input of "2/mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result3,
+      "invalid number",
+      'Given input of "/mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result4,
+      "invalid number",
+      'Given input of ",/,mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result5,
+      "invalid number",
+      'Given input of "1,1/2,2mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result6,
+      "invalid number",
+      'Given input of "-/-mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result7,
+      "invalid number",
+      'Given input of "+/+mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result8,
+      "invalid number",
+      'Given input of "=/=mi" should return an error: "invalid number"'
+    );
+  });
 });
