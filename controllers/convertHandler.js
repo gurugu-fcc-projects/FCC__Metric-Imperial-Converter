@@ -1,9 +1,21 @@
 function ConvertHandler() {
   this.getNum = function (input) {
     // let result = input.match(/^\d+\.?\d+//?\d+/);
-    let result = input.match(/^\d+\.?\d*(\/\d+\.?\d*)?/);
+    // let result = input.match(/^\d+\.?\d*(\/\d+\.?\d*)?/);
 
-    return result[0];
+    let splitPoint = null;
+    const splitPointRegex = new RegExp("[a-z]");
+
+    for (let i = 0; i < input.length; i++) {
+      const isFound = splitPointRegex.test(input.charAt(i));
+
+      if (isFound) {
+        splitPoint = i;
+        break;
+      }
+    }
+
+    return input.slice(0, splitPoint);
   };
 
   this.getUnit = function (input) {
