@@ -30,6 +30,8 @@ function ConvertHandler() {
       if (!allNumbers) {
         return "invalid number";
       }
+
+      return Number(fractionalParts[0]) / Number(fractionalParts[1]);
     }
 
     return numericalPart;
