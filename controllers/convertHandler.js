@@ -1,8 +1,5 @@
 function ConvertHandler() {
   this.getNum = function (input) {
-    // let result = input.match(/^\d+\.?\d+//?\d+/);
-    // let result = input.match(/^\d+\.?\d*(\/\d+\.?\d*)?/);
-
     let splitPoint = null;
     const splitPointRegex = new RegExp("[a-z]");
 
@@ -19,6 +16,14 @@ function ConvertHandler() {
 
     if (!numericalPart) {
       return 1;
+    }
+
+    if (numericalPart.includes("/")) {
+      const fractionalParts = numericalPart.split("/");
+
+      if (fractionalParts.length > 2) {
+        return "invalid number";
+      }
     }
 
     return numericalPart;
