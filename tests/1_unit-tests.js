@@ -60,11 +60,17 @@ suite("Unit Tests", function () {
 
   test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3).", function () {
     const result1 = convertHandler.getNum("3/2/3mi");
+    const result2 = convertHandler.getNum("/2/mi");
 
     assert.equal(
       result1,
       "invalid number",
       'Given input of "3/2/3mi" should return an error: "invalid number"'
+    );
+    assert.equal(
+      result2,
+      "invalid number",
+      'Given input of "/2/mi" should return an error: "invalid number"'
     );
   });
 });
