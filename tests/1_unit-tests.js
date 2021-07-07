@@ -53,4 +53,14 @@ suite("Unit Tests", function () {
       'Given input of "1.2/mi" should return a fractional input with a decimal "1.2"'
     );
   });
+
+  test("convertHandler should correctly default to a numerical input of 1 when no numerical input is provided", function () {
+    const result1 = convertHandler.getNum("mi");
+
+    assert.equal(
+      result1,
+      "1",
+      'Given input of "mi" should return a default: "1"'
+    );
+  });
 });
