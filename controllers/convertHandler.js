@@ -24,6 +24,12 @@ function ConvertHandler() {
       if (fractionalParts.length > 2) {
         return "invalid number";
       }
+
+      const allNumbers = fractionalParts.every(Number);
+
+      if (!allNumbers) {
+        return "invalid number";
+      }
     }
 
     return numericalPart;
