@@ -53,6 +53,12 @@ function ConvertHandler() {
 
     const unitPart = inputToLowerCase.slice(splitPoint);
 
+    const unitIsValid = /^(mi|km|gal|l|kg|lbs)$/.test(unitPart);
+
+    if (!unitIsValid) {
+      return "invalid unit";
+    }
+
     return unitPart;
   };
 
