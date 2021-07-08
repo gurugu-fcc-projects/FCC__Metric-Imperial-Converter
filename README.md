@@ -13,7 +13,7 @@ Write the following tests in tests/1_unit-tests.js:
 [#] - convertHandler should correctly read each valid input unit.
 [#] - convertHandler should correctly return an error for an invalid input unit.
 [#] - convertHandler should return the correct return unit for each valid input unit.
-[] - convertHandler should correctly return the spelled-out string unit for each valid input unit.
+[#] - convertHandler should correctly return the spelled-out string unit for each valid input unit.
 [] - convertHandler should correctly convert gal to L.
 [] - convertHandler should correctly convert L to gal.
 [] - convertHandler should correctly convert mi to km.

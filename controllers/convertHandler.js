@@ -76,9 +76,16 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (unit) {
-    let result;
+    const pairs = {
+      km: "kilometers",
+      mi: "miles",
+      l: "liters",
+      gal: "gallons",
+      kg: "kilograms",
+      lbs: "pounds",
+    };
 
-    return result;
+    return pairs[unit];
   };
 
   this.convert = function (initNum, initUnit) {
