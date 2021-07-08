@@ -12,7 +12,8 @@ suite("Functional Tests", function () {
       .get("/api/convert?input=10L")
       .end(function (err, res) {
         assert.equal(res.status, 200);
-        assert.equal(res.text, "10 liters converts to 2.64172 gallons");
+        assert.equal(res.type, "application/json");
+        assert.equal(res.body.string, "10 liters converts to 2.64172 gallons");
         done();
       });
   });
@@ -52,7 +53,8 @@ suite("Functional Tests", function () {
       .get("/api/convert?input=kg")
       .end(function (err, res) {
         assert.equal(res.status, 200);
-        assert.equal(res.text, "1 kilograms converts to 2.20462 pounds");
+        assert.equal(res.type, "application/json");
+        assert.equal(res.body.string, "1 kilograms converts to 2.20462 pounds");
         done();
       });
   });
