@@ -230,4 +230,37 @@ suite("Unit Tests", function () {
       assert.equal(result6, "lbs", 'Given input "kg" should return "lbs"');
     });
   });
+  suite("convertHandler spellOutUnit method", function () {
+    test("should correctly return the spelled-out string unit for each valid input unit", function () {
+      const result1 = convertHandler.spellOutUnit("mi");
+      const result2 = convertHandler.spellOutUnit("km");
+      const result3 = convertHandler.spellOutUnit("gal");
+      const result4 = convertHandler.spellOutUnit("l");
+      const result5 = convertHandler.spellOutUnit("lbs");
+      const result6 = convertHandler.spellOutUnit("kg");
+
+      assert.equal(result1, "miles", 'Given input "mi" should return "miles"');
+      assert.equal(
+        result2,
+        "kilometers",
+        'Given input "km" should return "kilometers"'
+      );
+      assert.equal(
+        result3,
+        "gallons",
+        'Given input "gal" should return "gallons"'
+      );
+      assert.equal(result4, "liters", 'Given input "l" should return "liters"');
+      assert.equal(
+        result5,
+        "pounds",
+        'Given input "lbs" should return "pounds"'
+      );
+      assert.equal(
+        result6,
+        "kilograms",
+        'Given input "kg" should return "kilograms"'
+      );
+    });
+  });
 });
