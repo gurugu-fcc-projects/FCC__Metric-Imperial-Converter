@@ -391,4 +391,15 @@ suite("Unit Tests", function () {
       );
     });
   });
+  suite("convertHandler getString method", function () {
+    test("should return a proper string", function () {
+      const result = convertHandler.getString(2, "km", 1.24275, "mi");
+
+      assert.equal(
+        result,
+        "2 kilometers converts to 1.24275 miles",
+        'Given input "2, km, 1.24275, mi" should return "2 kilometers converts to 1.24275 miles"'
+      );
+    });
+  });
 });

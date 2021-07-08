@@ -110,9 +110,10 @@ function ConvertHandler() {
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    let result;
+    const initUnitString = this.spellOutUnit(initUnit);
+    const returnUnitString = this.spellOutUnit(returnUnit);
 
-    return result;
+    return `${initNum} ${initUnitString} converts to ${returnNum} ${returnUnitString}`;
   };
 }
 
