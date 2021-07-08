@@ -34,7 +34,7 @@ function ConvertHandler() {
       return Number(fractionalParts[0]) / Number(fractionalParts[1]);
     }
 
-    return numericalPart;
+    return Number(numericalPart);
   };
 
   this.getUnit = function (input) {
@@ -106,7 +106,7 @@ function ConvertHandler() {
       lbs: num => (num * lbsToKg).toFixed(5),
     };
 
-    return conversions[initUnit](initNum);
+    return Number(conversions[initUnit](initNum));
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
