@@ -94,6 +94,7 @@ function ConvertHandler() {
     const miToKm = 1.60934;
 
     const conversions = {
+      l: num => (num / galToL).toFixed(5),
       gal: num => (num * galToL).toFixed(5),
     };
 

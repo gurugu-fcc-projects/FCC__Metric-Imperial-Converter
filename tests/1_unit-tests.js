@@ -288,7 +288,7 @@ suite("Unit Tests", function () {
     test("should correctly convert L to gal", function () {
       const result1 = convertHandler.convert(1, "l");
       const result2 = convertHandler.convert(2, "l");
-      const result3 = convertHandler.convert(3.5, "l");
+      const result3 = convertHandler.convert(2.5, "l");
 
       assert.equal(
         result1,
