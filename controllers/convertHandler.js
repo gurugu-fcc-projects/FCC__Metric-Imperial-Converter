@@ -63,9 +63,16 @@ function ConvertHandler() {
   };
 
   this.getReturnUnit = function (initUnit) {
-    let result;
+    const pairs = {
+      km: "mi",
+      mi: "km",
+      l: "gal",
+      gal: "l",
+      kg: "lbs",
+      lbs: "kg",
+    };
 
-    return result;
+    return pairs[initUnit];
   };
 
   this.spellOutUnit = function (unit) {
