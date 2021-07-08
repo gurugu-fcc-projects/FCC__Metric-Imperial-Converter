@@ -263,4 +263,27 @@ suite("Unit Tests", function () {
       );
     });
   });
+  suite("convertHandler convert method", function () {
+    test("should correctly convert gal to L", function () {
+      const result1 = convertHandler.convert(1, "gal");
+      const result2 = convertHandler.convert(2, "gal");
+      const result3 = convertHandler.convert(3.5, "gal");
+
+      assert.equal(
+        result1,
+        3.78541,
+        'Given input "1, gal" should return "3.78541"'
+      );
+      assert.equal(
+        result2,
+        7.57082,
+        'Given input "2, gal" should return "7.57082"'
+      );
+      assert.equal(
+        result3,
+        13.24894,
+        'Given input "2.5, gal" should return "13.24894"'
+      );
+    });
+  });
 });
