@@ -92,9 +92,12 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    let result;
 
-    return result;
+    const conversions = {
+      gal: num => (num * galToL).toFixed(5),
+    };
+
+    return conversions[initUnit](initNum);
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
