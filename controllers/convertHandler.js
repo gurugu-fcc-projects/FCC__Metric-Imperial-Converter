@@ -1,7 +1,7 @@
 function ConvertHandler() {
   this.getNum = function (input) {
     let splitPoint = null;
-    const splitPointRegex = new RegExp("[a-z]");
+    const splitPointRegex = new RegExp("[a-zA-Z]");
 
     for (let i = 0; i < input.length; i++) {
       const isFound = splitPointRegex.test(input.charAt(i));
