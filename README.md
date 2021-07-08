@@ -14,12 +14,12 @@ Write the following tests in tests/1_unit-tests.js:
 [#] - convertHandler should correctly return an error for an invalid input unit.
 [#] - convertHandler should return the correct return unit for each valid input unit.
 [#] - convertHandler should correctly return the spelled-out string unit for each valid input unit.
-[] - convertHandler should correctly convert gal to L.
-[] - convertHandler should correctly convert L to gal.
-[] - convertHandler should correctly convert mi to km.
-[] - convertHandler should correctly convert km to mi.
-[] - convertHandler should correctly convert lbs to kg.
-[] - convertHandler should correctly convert kg to lbs.
+[#] - convertHandler should correctly convert gal to L.
+[#] - convertHandler should correctly convert L to gal.
+[#] - convertHandler should correctly convert mi to km.
+[#] - convertHandler should correctly convert km to mi.
+[#] - convertHandler should correctly convert lbs to kg.
+[#] - convertHandler should correctly convert kg to lbs.
 
 Write the following tests in tests/2_functional-tests.js:
 

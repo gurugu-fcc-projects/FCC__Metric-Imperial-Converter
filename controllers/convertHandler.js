@@ -59,6 +59,10 @@ function ConvertHandler() {
       return "invalid unit";
     }
 
+    if (unitPart === "l") {
+      return "L";
+    }
+
     return unitPart;
   };
 
@@ -66,8 +70,8 @@ function ConvertHandler() {
     const pairs = {
       km: "mi",
       mi: "km",
-      l: "gal",
-      gal: "l",
+      L: "gal",
+      gal: "L",
       kg: "lbs",
       lbs: "kg",
     };
@@ -79,7 +83,7 @@ function ConvertHandler() {
     const pairs = {
       km: "kilometers",
       mi: "miles",
-      l: "liters",
+      L: "liters",
       gal: "gallons",
       kg: "kilograms",
       lbs: "pounds",
@@ -96,7 +100,7 @@ function ConvertHandler() {
     const conversions = {
       km: num => (num / miToKm).toFixed(5),
       mi: num => (num * miToKm).toFixed(5),
-      l: num => (num / galToL).toFixed(5),
+      L: num => (num / galToL).toFixed(5),
       gal: num => (num * galToL).toFixed(5),
       kg: num => (num / lbsToKg).toFixed(5),
       lbs: num => (num * lbsToKg).toFixed(5),

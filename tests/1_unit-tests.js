@@ -154,7 +154,7 @@ suite("Unit Tests", function () {
       assert.equal(result1, "mi", 'Given input "mi" should return "mi"');
       assert.equal(result2, "km", 'Given input "12km" should return "km"');
       assert.equal(result3, "gal", 'Given input "1/2gal" should return "gal"');
-      assert.equal(result4, "l", 'Given input "2.2l" should return "l"');
+      assert.equal(result4, "L", 'Given input "2.2l" should return "L"');
       assert.equal(result5, "lbs", 'Given input ".2lbs" should return "lbs"');
       assert.equal(result6, "kg", 'Given input "2.KG" should return "kg"');
       assert.equal(result7, "mi", 'Given input "MI" should return "mi"');
@@ -218,14 +218,14 @@ suite("Unit Tests", function () {
       const result1 = convertHandler.getReturnUnit("mi");
       const result2 = convertHandler.getReturnUnit("km");
       const result3 = convertHandler.getReturnUnit("gal");
-      const result4 = convertHandler.getReturnUnit("l");
+      const result4 = convertHandler.getReturnUnit("L");
       const result5 = convertHandler.getReturnUnit("lbs");
       const result6 = convertHandler.getReturnUnit("kg");
 
       assert.equal(result1, "km", 'Given input "mi" should return "km"');
       assert.equal(result2, "mi", 'Given input "km" should return "mi"');
-      assert.equal(result3, "l", 'Given input "gal" should return "l"');
-      assert.equal(result4, "gal", 'Given input "l" should return "gal"');
+      assert.equal(result3, "L", 'Given input "gal" should return "L"');
+      assert.equal(result4, "gal", 'Given input "L" should return "gal"');
       assert.equal(result5, "kg", 'Given input "lbs" should return "kg"');
       assert.equal(result6, "lbs", 'Given input "kg" should return "lbs"');
     });
@@ -235,7 +235,7 @@ suite("Unit Tests", function () {
       const result1 = convertHandler.spellOutUnit("mi");
       const result2 = convertHandler.spellOutUnit("km");
       const result3 = convertHandler.spellOutUnit("gal");
-      const result4 = convertHandler.spellOutUnit("l");
+      const result4 = convertHandler.spellOutUnit("L");
       const result5 = convertHandler.spellOutUnit("lbs");
       const result6 = convertHandler.spellOutUnit("kg");
 
@@ -250,7 +250,7 @@ suite("Unit Tests", function () {
         "gallons",
         'Given input "gal" should return "gallons"'
       );
-      assert.equal(result4, "liters", 'Given input "l" should return "liters"');
+      assert.equal(result4, "liters", 'Given input "L" should return "liters"');
       assert.equal(
         result5,
         "pounds",
@@ -286,24 +286,24 @@ suite("Unit Tests", function () {
       );
     });
     test("should correctly convert L to gal", function () {
-      const result1 = convertHandler.convert(1, "l");
-      const result2 = convertHandler.convert(2, "l");
-      const result3 = convertHandler.convert(2.5, "l");
+      const result1 = convertHandler.convert(1, "L");
+      const result2 = convertHandler.convert(2, "L");
+      const result3 = convertHandler.convert(2.5, "L");
 
       assert.equal(
         result1,
         0.26417,
-        'Given input "1, l" should return "0.26417"'
+        'Given input "1, L" should return "0.26417"'
       );
       assert.equal(
         result2,
         0.52834,
-        'Given input "2, l" should return "0.52834"'
+        'Given input "2, L" should return "0.52834"'
       );
       assert.equal(
         result3,
         0.66043,
-        'Given input "2.5, l" should return "0.66043"'
+        'Given input "2.5, L" should return "0.66043"'
       );
     });
     test("should correctly convert mi to km", function () {
