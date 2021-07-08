@@ -285,5 +285,26 @@ suite("Unit Tests", function () {
         'Given input "2.5, gal" should return "13.24894"'
       );
     });
+    test("should correctly convert L to gal", function () {
+      const result1 = convertHandler.convert(1, "l");
+      const result2 = convertHandler.convert(2, "l");
+      const result3 = convertHandler.convert(3.5, "l");
+
+      assert.equal(
+        result1,
+        0.26417,
+        'Given input "1, l" should return "0.26417"'
+      );
+      assert.equal(
+        result2,
+        0.52834,
+        'Given input "2, l" should return "0.52834"'
+      );
+      assert.equal(
+        result3,
+        0.66043,
+        'Given input "2.5, l" should return "0.66043"'
+      );
+    });
   });
 });
