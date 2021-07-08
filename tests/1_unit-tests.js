@@ -88,56 +88,29 @@ suite("Unit Tests", function () {
       );
     });
 
-    test("should correctly return an error on incorrect numbers", function () {
-      const result1 = convertHandler.getNum("/2mi");
-      const result2 = convertHandler.getNum("2/mi");
-      const result3 = convertHandler.getNum("/mi");
-      const result4 = convertHandler.getNum(",/,mi");
-      const result5 = convertHandler.getNum("1,1/2,2mi");
-      const result6 = convertHandler.getNum("-/-mi");
-      const result7 = convertHandler.getNum("+/+mi");
-      const result8 = convertHandler.getNum("=/=mi");
+    test("should correctly return an error on incorrect numbers", function (done) {
+      const inputs = [
+        "/2mi",
+        "2/mi",
+        "/mi",
+        ",/,mi",
+        "1,1/2,2mi",
+        "-/-mi",
+        "+/+mi",
+        "=/=mi",
+        "%mi",
+      ];
 
-      assert.equal(
-        result1,
-        "invalid number",
-        'Given input of "/2mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result2,
-        "invalid number",
-        'Given input of "2/mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result3,
-        "invalid number",
-        'Given input of "/mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result4,
-        "invalid number",
-        'Given input of ",/,mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result5,
-        "invalid number",
-        'Given input of "1,1/2,2mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result6,
-        "invalid number",
-        'Given input of "-/-mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result7,
-        "invalid number",
-        'Given input of "+/+mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result8,
-        "invalid number",
-        'Given input of "=/=mi" should return an error: "invalid number"'
-      );
+      inputs.forEach(input => {
+        const result = convertHandler.getNum(input);
+        assert.equal(
+          result,
+          "invalid number",
+          `Given input of "${input}" should return an error: "invalid number"`
+        );
+      });
+
+      done();
     });
   });
   suite("convertHandler getUnit method", function () {
