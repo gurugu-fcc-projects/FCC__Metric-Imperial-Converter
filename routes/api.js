@@ -27,6 +27,6 @@ module.exports = function (app) {
       returnUnit
     );
 
-    res.status(200).send(string);
+    res.status(200).json({ initNum, initUnit, returnNum, returnUnit, string });
   });
 };
