@@ -10,12 +10,12 @@ module.exports = function (app) {
     const initNum = convertHandler.getNum(req.query.input);
     const initUnit = convertHandler.getUnit(req.query.input);
 
-    if (initNum === "invalid number") {
-      res.status(200).send(initNum);
+    if (initNum === "invalid number" && initUnit === "invalid unit") {
+      return res.status(200).send("invalid number and unit");
     } else if (initUnit === "invalid unit") {
-      res.status(200).send(initUnit);
-    } else if (initNum === "invalid number" && initUnit === "invalid unit") {
-      res.status(200).send("invalid number and unit");
+      return res.status(200).send(initUnit);
+    } else if (initNum === "invalid number") {
+      return res.status(200).send(initNum);
     }
 
     const returnNum = convertHandler.convert(initNum, initUnit);
