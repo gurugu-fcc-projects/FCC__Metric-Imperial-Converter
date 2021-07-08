@@ -34,6 +34,10 @@ function ConvertHandler() {
       return Number(fractionalParts[0]) / Number(fractionalParts[1]);
     }
 
+    const returnNum = Number(numericalPart);
+
+    if (isNaN(returnNum)) return "invalid number";
+
     return Number(numericalPart);
   };
 
