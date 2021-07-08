@@ -306,5 +306,89 @@ suite("Unit Tests", function () {
         'Given input "2.5, l" should return "0.66043"'
       );
     });
+    test("should correctly convert mi to km", function () {
+      const result1 = convertHandler.convert(1, "mi");
+      const result2 = convertHandler.convert(2, "mi");
+      const result3 = convertHandler.convert(2.5, "mi");
+
+      assert.equal(
+        result1,
+        1.60934,
+        'Given input "1, mi" should return "1.60934"'
+      );
+      assert.equal(
+        result2,
+        3.21868,
+        'Given input "2, mi" should return "3.21868"'
+      );
+      assert.equal(
+        result3,
+        4.02335,
+        'Given input "2.5, mi" should return "4.02335"'
+      );
+    });
+    test("should correctly convert km to mi", function () {
+      const result1 = convertHandler.convert(1, "km");
+      const result2 = convertHandler.convert(2, "km");
+      const result3 = convertHandler.convert(2.5, "km");
+
+      assert.equal(
+        result1,
+        0.62137,
+        'Given input "1, km" should return "0.62137"'
+      );
+      assert.equal(
+        result2,
+        1.24275,
+        'Given input "2, km" should return "1.24275"'
+      );
+      assert.equal(
+        result3,
+        1.55343,
+        'Given input "2.5, km" should return "1.55343"'
+      );
+    });
+    test("should correctly convert lbs to kg", function () {
+      const result1 = convertHandler.convert(1, "lbs");
+      const result2 = convertHandler.convert(2, "lbs");
+      const result3 = convertHandler.convert(2.5, "lbs");
+
+      assert.equal(
+        result1,
+        0.45359,
+        'Given input "1, lbs" should return "0.45359"'
+      );
+      assert.equal(
+        result2,
+        0.90718,
+        'Given input "2, lbs" should return "0.90718"'
+      );
+      assert.equal(
+        result3,
+        1.13398,
+        'Given input "2.5, lbs" should return "1.13398"'
+      );
+    });
+    test("should correctly convert kg to lbs", function () {
+      const result1 = convertHandler.convert(1, "kg");
+      const result2 = convertHandler.convert(2, "kg");
+      const result3 = convertHandler.convert(2.5, "kg");
+
+      assert.equal(
+        result1,
+        2.20462,
+        'Given input "1, kg" should return "2.20462"'
+      );
+      assert.equal(
+        result2,
+        4.40925,
+        'Given input "2, kg" should return "4.40925"'
+      );
+      assert.equal(
+        result3,
+        5.51156,
+        'Given input "2.5, kg" should return "5.51156"'
+      );
+    });
   });
 });
