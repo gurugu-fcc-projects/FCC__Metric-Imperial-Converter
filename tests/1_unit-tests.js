@@ -30,17 +30,17 @@ suite("Unit Tests", () => {
 
     test("should correctly read a fractional input", done => {
       const testData = [
-        { input: "1/2mi", result: 0.5 },
-        { input: "4/2mi", result: 2 },
-        { input: "5/2mi", result: 2.5 },
+        { input: "1/2mi", expected: 0.5 },
+        { input: "4/2mi", expected: 2 },
+        { input: "5/2mi", expected: 2.5 },
       ];
 
       testData.forEach(item => {
         const result = convertHandler.getNum(item.input);
         assert.equal(
           result,
-          item.result,
-          `Given input "${item.input}" should return "${item.result}"`
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
         );
       });
 
@@ -48,19 +48,19 @@ suite("Unit Tests", () => {
     });
 
     test("should correctly read a fractional input with a decimal", done => {
-      const result1 = convertHandler.getNum("1.2/2.1mi");
-      const result2 = convertHandler.getNum("1.2/1mi");
+      const testData = [
+        { input: "1.2/2.1mi", expected: 0.5714285714285714 },
+        { input: "1.2/1mi", expected: 1.2 },
+      ];
 
-      assert.equal(
-        result1,
-        0.5714285714285714,
-        'Given input of "1.2/2.1mi" should return a decimal: "0.5714285714285714"'
-      );
-      assert.equal(
-        result2,
-        1.2,
-        'Given input of "1.2/1mi" should return a decimal: "1.2"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.getNum(item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
@@ -78,19 +78,16 @@ suite("Unit Tests", () => {
     });
 
     test("should correctly return an error on a double-fraction (i.e. 3/2/3).", done => {
-      const result1 = convertHandler.getNum("3/2/3mi");
-      const result2 = convertHandler.getNum("/2/mi");
+      const inputs = ["3/2/3mi", "/2/mi"];
 
-      assert.equal(
-        result1,
-        "invalid number",
-        'Given input of "3/2/3mi" should return an error: "invalid number"'
-      );
-      assert.equal(
-        result2,
-        "invalid number",
-        'Given input of "/2/mi" should return an error: "invalid number"'
-      );
+      inputs.forEach(input => {
+        const result = convertHandler.getNum(input);
+        assert.equal(
+          result,
+          "invalid number",
+          `Given input "${input}" should return "invalid number"`
+        );
+      });
 
       done();
     });
@@ -122,271 +119,205 @@ suite("Unit Tests", () => {
   });
   suite("convertHandler getUnit method", () => {
     test("should correctly read each valid input unit", done => {
-      const result1 = convertHandler.getUnit("mi");
-      const result2 = convertHandler.getUnit("12km");
-      const result3 = convertHandler.getUnit("1/2gal");
-      const result4 = convertHandler.getUnit("2.2l");
-      const result5 = convertHandler.getUnit(".2lbs");
-      const result6 = convertHandler.getUnit("2.KG");
-      const result7 = convertHandler.getUnit("&^()#&*(&*)(_+=MI");
-      const result8 = convertHandler.getUnit("KM");
+      const testData = [
+        { input: "mi", expected: "mi" },
+        { input: "12km", expected: "km" },
+        { input: "1/2gal", expected: "gal" },
+        { input: "2.2l", expected: "L" },
+        { input: ".2lbs", expected: "lbs" },
+        { input: "2.KG", expected: "kg" },
+        { input: "&^()#&*(&*)(_+=MI", expected: "mi" },
+        { input: "KM", expected: "km" },
+      ];
 
-      assert.equal(result1, "mi", 'Given input "mi" should return "mi"');
-      assert.equal(result2, "km", 'Given input "12km" should return "km"');
-      assert.equal(result3, "gal", 'Given input "1/2gal" should return "gal"');
-      assert.equal(result4, "L", 'Given input "2.2l" should return "L"');
-      assert.equal(result5, "lbs", 'Given input ".2lbs" should return "lbs"');
-      assert.equal(result6, "kg", 'Given input "2.KG" should return "kg"');
-      assert.equal(result7, "mi", 'Given input "MI" should return "mi"');
-      assert.equal(result8, "km", 'Given input "KM" should return "km"');
+      testData.forEach(item => {
+        const result = convertHandler.getUnit(item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
 
     test("should correctly return an error for an invalid input unit", done => {
-      const result1 = convertHandler.getUnit("mil");
-      const result2 = convertHandler.getUnit("12kms");
-      const result3 = convertHandler.getUnit("1/2gallons");
-      const result4 = convertHandler.getUnit("2.2ligh");
-      const result5 = convertHandler.getUnit(".2lbs732");
-      const result6 = convertHandler.getUnit("2.KG-==");
-      const result7 = convertHandler.getUnit("&^()#&*(&*)(_+=MILE");
-      const result8 = convertHandler.getUnit("KMs");
+      const testData = [
+        { input: "mil", expected: "invalid unit" },
+        { input: "12kms", expected: "invalid unit" },
+        { input: "1/2gallons", expected: "invalid unit" },
+        { input: "2.2ligh", expected: "invalid unit" },
+        { input: ".2lbs732", expected: "invalid unit" },
+        { input: "2.KG-==", expected: "invalid unit" },
+        { input: "&^()#&*(&*)(_+=MILE", expected: "invalid unit" },
+        { input: "KMs", expected: "invalid unit" },
+      ];
 
-      assert.equal(
-        result1,
-        "invalid unit",
-        'Given input "mil" should return "invalid unit"'
-      );
-      assert.equal(
-        result2,
-        "invalid unit",
-        'Given input "12kms" should return "invalid unit"'
-      );
-      assert.equal(
-        result3,
-        "invalid unit",
-        'Given input "1/2gallons" should return "invalid unit"'
-      );
-      assert.equal(
-        result4,
-        "invalid unit",
-        'Given input "2.2ligh" should return "invalid unit'
-      );
-      assert.equal(
-        result5,
-        "invalid unit",
-        'Given input ".2lbs732" should return "invalid unit"'
-      );
-      assert.equal(
-        result6,
-        "invalid unit",
-        'Given input "2.KG-==" should return "invalid unit"'
-      );
-      assert.equal(
-        result7,
-        "invalid unit",
-        'Given input "&^()#&*(&*)(_+=MILE" should return "invalid unit"'
-      );
-      assert.equal(
-        result8,
-        "invalid unit",
-        'Given input "KMs" should return "invalid unit"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.getUnit(item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
   });
   suite("convertHandler getReturnUnit method", () => {
     test("should return the correct return unit for each valid input unit", done => {
-      const result1 = convertHandler.getReturnUnit("mi");
-      const result2 = convertHandler.getReturnUnit("km");
-      const result3 = convertHandler.getReturnUnit("gal");
-      const result4 = convertHandler.getReturnUnit("L");
-      const result5 = convertHandler.getReturnUnit("lbs");
-      const result6 = convertHandler.getReturnUnit("kg");
+      const testData = [
+        { input: "mi", expected: "km" },
+        { input: "km", expected: "mi" },
+        { input: "gal", expected: "L" },
+        { input: "L", expected: "gal" },
+        { input: "lbs", expected: "kg" },
+        { input: "kg", expected: "lbs" },
+      ];
 
-      assert.equal(result1, "km", 'Given input "mi" should return "km"');
-      assert.equal(result2, "mi", 'Given input "km" should return "mi"');
-      assert.equal(result3, "L", 'Given input "gal" should return "L"');
-      assert.equal(result4, "gal", 'Given input "L" should return "gal"');
-      assert.equal(result5, "kg", 'Given input "lbs" should return "kg"');
-      assert.equal(result6, "lbs", 'Given input "kg" should return "lbs"');
+      testData.forEach(item => {
+        const result = convertHandler.getReturnUnit(item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
   });
   suite("convertHandler spellOutUnit method", () => {
     test("should correctly return the spelled-out string unit for each valid input unit", done => {
-      const result1 = convertHandler.spellOutUnit("mi");
-      const result2 = convertHandler.spellOutUnit("km");
-      const result3 = convertHandler.spellOutUnit("gal");
-      const result4 = convertHandler.spellOutUnit("L");
-      const result5 = convertHandler.spellOutUnit("lbs");
-      const result6 = convertHandler.spellOutUnit("kg");
+      const testData = [
+        { input: "mi", expected: "miles" },
+        { input: "km", expected: "kilometers" },
+        { input: "gal", expected: "gallons" },
+        { input: "L", expected: "liters" },
+        { input: "lbs", expected: "pounds" },
+        { input: "kg", expected: "kilograms" },
+      ];
 
-      assert.equal(result1, "miles", 'Given input "mi" should return "miles"');
-      assert.equal(
-        result2,
-        "kilometers",
-        'Given input "km" should return "kilometers"'
-      );
-      assert.equal(
-        result3,
-        "gallons",
-        'Given input "gal" should return "gallons"'
-      );
-      assert.equal(result4, "liters", 'Given input "L" should return "liters"');
-      assert.equal(
-        result5,
-        "pounds",
-        'Given input "lbs" should return "pounds"'
-      );
-      assert.equal(
-        result6,
-        "kilograms",
-        'Given input "kg" should return "kilograms"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.spellOutUnit(item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
   });
   suite("convertHandler convert method", () => {
     test("should correctly convert gal to L", done => {
-      const result1 = convertHandler.convert(1, "gal");
-      const result2 = convertHandler.convert(2, "gal");
-      const result3 = convertHandler.convert(3.5, "gal");
+      const testData = [
+        { input: [1, "gal"], expected: 3.78541 },
+        { input: [2, "gal"], expected: 7.57082 },
+        { input: [2.5, "gal"], expected: 13.24894 },
+      ];
 
-      assert.equal(
-        result1,
-        3.78541,
-        'Given input "1, gal" should return "3.78541"'
-      );
-      assert.equal(
-        result2,
-        7.57082,
-        'Given input "2, gal" should return "7.57082"'
-      );
-      assert.equal(
-        result3,
-        13.24894,
-        'Given input "2.5, gal" should return "13.24894"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.convert(...item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
     test("should correctly convert L to gal", done => {
-      const result1 = convertHandler.convert(1, "L");
-      const result2 = convertHandler.convert(2, "L");
-      const result3 = convertHandler.convert(2.5, "L");
+      const testData = [
+        { input: [1, "L"], expected: 0.26417 },
+        { input: [2, "L"], expected: 0.52834 },
+        { input: [2.5, "L"], expected: 0.66043 },
+      ];
 
-      assert.equal(
-        result1,
-        0.26417,
-        'Given input "1, L" should return "0.26417"'
-      );
-      assert.equal(
-        result2,
-        0.52834,
-        'Given input "2, L" should return "0.52834"'
-      );
-      assert.equal(
-        result3,
-        0.66043,
-        'Given input "2.5, L" should return "0.66043"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.convert(...item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
     test("should correctly convert mi to km", done => {
-      const result1 = convertHandler.convert(1, "mi");
-      const result2 = convertHandler.convert(2, "mi");
-      const result3 = convertHandler.convert(2.5, "mi");
+      const testData = [
+        { input: [1, "mi"], expected: 1.60934 },
+        { input: [2, "mi"], expected: 3.21868 },
+        { input: [2.5, "mi"], expected: 4.02335 },
+      ];
 
-      assert.equal(
-        result1,
-        1.60934,
-        'Given input "1, mi" should return "1.60934"'
-      );
-      assert.equal(
-        result2,
-        3.21868,
-        'Given input "2, mi" should return "3.21868"'
-      );
-      assert.equal(
-        result3,
-        4.02335,
-        'Given input "2.5, mi" should return "4.02335"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.convert(...item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
     test("should correctly convert km to mi", done => {
-      const result1 = convertHandler.convert(1, "km");
-      const result2 = convertHandler.convert(2, "km");
-      const result3 = convertHandler.convert(2.5, "km");
+      const testData = [
+        { input: [1, "km"], expected: 0.62137 },
+        { input: [2, "km"], expected: 1.24275 },
+        { input: [2.5, "km"], expected: 1.55343 },
+      ];
 
-      assert.equal(
-        result1,
-        0.62137,
-        'Given input "1, km" should return "0.62137"'
-      );
-      assert.equal(
-        result2,
-        1.24275,
-        'Given input "2, km" should return "1.24275"'
-      );
-      assert.equal(
-        result3,
-        1.55343,
-        'Given input "2.5, km" should return "1.55343"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.convert(...item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
     test("should correctly convert lbs to kg", done => {
-      const result1 = convertHandler.convert(1, "lbs");
-      const result2 = convertHandler.convert(2, "lbs");
-      const result3 = convertHandler.convert(2.5, "lbs");
+      const testData = [
+        { input: [1, "lbs"], expected: 0.45359 },
+        { input: [2, "lbs"], expected: 0.90718 },
+        { input: [2.5, "lbs"], expected: 1.13398 },
+      ];
 
-      assert.equal(
-        result1,
-        0.45359,
-        'Given input "1, lbs" should return "0.45359"'
-      );
-      assert.equal(
-        result2,
-        0.90718,
-        'Given input "2, lbs" should return "0.90718"'
-      );
-      assert.equal(
-        result3,
-        1.13398,
-        'Given input "2.5, lbs" should return "1.13398"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.convert(...item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
     test("should correctly convert kg to lbs", done => {
-      const result1 = convertHandler.convert(1, "kg");
-      const result2 = convertHandler.convert(2, "kg");
-      const result3 = convertHandler.convert(2.5, "kg");
+      const testData = [
+        { input: [1, "kg"], expected: 2.20462 },
+        { input: [2, "kg"], expected: 4.40925 },
+        { input: [2.5, "kg"], expected: 5.51156 },
+      ];
 
-      assert.equal(
-        result1,
-        2.20462,
-        'Given input "1, kg" should return "2.20462"'
-      );
-      assert.equal(
-        result2,
-        4.40925,
-        'Given input "2, kg" should return "4.40925"'
-      );
-      assert.equal(
-        result3,
-        5.51156,
-        'Given input "2.5, kg" should return "5.51156"'
-      );
+      testData.forEach(item => {
+        const result = convertHandler.convert(...item.input);
+        assert.equal(
+          result,
+          item.expected,
+          `Given input "${item.input}" should return "${item.expected}"`
+        );
+      });
 
       done();
     });
